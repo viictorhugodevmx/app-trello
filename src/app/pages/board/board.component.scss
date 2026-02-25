@@ -23,3 +23,50 @@
   padding: 10px;
   border-radius: 4px;
 }
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.4;
+}
+
+.cdk-drag-animating {
+  transition: transform 200ms ease;
+}
+
+.tasks.cdk-drop-list-dragging .card:not(.cdk-drag-placeholder) {
+  transition: transform 200ms ease;
+}
+
+
+.column {
+  min-height: 300px;
+  transition: background 0.2s ease;
+}
+
+.column:hover {
+  background: #e5e7eb;
+}
+
+.new-task {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+
+  input {
+    flex: 1;
+    padding: 6px;
+  }
+
+  button {
+    padding: 6px 10px;
+    background: #111;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+}

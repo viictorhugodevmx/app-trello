@@ -15,6 +15,14 @@ import { signal } from '@angular/core';
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
+  private storageKey = 'trello-board';
+
+  constructor() {
+    const saved = localStorage.getItem(this.storageKey);
+    if (saved) {
+      this.columns.set(JSON.parse(saved));
+    }
+  }
 
   columns = signal([
     {
@@ -81,6 +89,14 @@ export class BoardComponent {
 
     // Forzar actualización del signal
     this.columns.update(cols => [...cols]);
+    this.saveState();
+  }
+
+  private saveState() {
+    localStorage.setItem(
+      this.storageKey,
+      JSON.stringify(this.columns())
+    );
   }
 
 }
