@@ -1,0 +1,37 @@
+<h1>Trello Clone</h1>
+
+<section class="board">
+  @for (column of columns(); track column.id) {
+    <div class="column">
+      <h2>{{ column.title }}</h2>
+
+      <div class="new-task">
+        <input
+          type="text"
+          placeholder="Nueva tarea..."
+          #taskInput
+        />
+        <button (click)="addTask(column.id, taskInput.value); taskInput.value=''">
+          +
+        </button>
+      </div>
+
+      <div
+        class="tasks"
+        cdkDropList
+        [cdkDropListData]="column.tasks"
+        [cdkDropListConnectedTo]="connectedLists"
+        [id]="column.id"
+        (cdkDropListDropped)="drop($event)"
+      >
+
+        @for (task of column.tasks; track task.id) {
+          <div class="card" cdkDrag>
+            {{ task.title }}
+          </div>
+        }
+
+      </div>
+    </div>
+  }
+</section>
